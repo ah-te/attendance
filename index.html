@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>attendance</title>
+  </head>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    
+    .but{
+      display: inline-block;
+      width: 100%;
+      color: #fff;
+      letter-spacing: 2px;
+      background-color: transparent;
+    }
+    #opened{
+      justify-content: right;
+      background-color: #7a1570;
+      color: #000;
+      align-content: flex-end;
+    }
+
+    .project{
+      display:flex;
+      /* flex-direction: column; */
+
+      justify-content: space-around;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    }
+
+    .form{
+      background: #99cc;
+      width: 30%;
+      padding: 2rem 3rem;
+      display: flex;
+      flex-direction: column;
+      
+    }
+    .form::placeholder{
+      letter-spacing: 2rem;
+    }
+
+    input{
+      width: 100%;
+      /* padding: ; */
+      padding: 10px 12px;
+      margin-top: 15px;
+      outline: none;
+      /* opacity: 0.1; */
+      
+    }
+
+    .submit{
+      width: 20%;
+      padding: 5px;
+      
+    }
+
+    .table{
+      width: 70%;
+    }
+    table{
+      width: 100%;
+    }
+
+    th{
+      width: 200px;
+      color: #fff;
+      letter-spacing: 2px;
+    }
+    td{
+      color: #fff;
+      letter-spacing: 2px;
+    }
+
+
+    /* @media screen and (min-width:768px) { */
+    @media screen and (max-width:767px) {
+
+          .project{
+          flex-direction: column;
+          /* flex-direction: row; */
+
+        }
+        .form{
+      background: rgba(26, 83, 14, 0.822);
+      width: 100%;
+      right: 50px;
+      padding: 0rem 0rem;
+      color: #000;
+    }
+    .table{
+    color: rgb(0, 255, 34);
+      
+      padding: 4rem 0rem;
+      width: auto;
+    }
+    th{
+      width: 100%;
+      text-decoration: #000;
+    }
+    @media screen and (max-width:400px) {
+      .table{
+      padding: 1rem 0rem;
+      width: 80%;
+      background-color: rgb(0, 255, 34);
+    }
+    #opened{
+      justify-content: right;
+      background-color: #17810dd2;
+      color: #000;
+      align-content: flex-end;
+      width: auto;
+    }
+    .form{
+      width: 80%;
+      right: 50px;
+      padding: 0rem 0rem;
+      color: #000;
+    }
+    input{
+      width: 100%;
+      /* padding: ; */
+      padding: 10px 12px;
+      outline: none;
+      text-transform: lowercase;
+      font-size: 5px bold;
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+  }
+  th{
+      width: 100%;
+      letter-spacing:2px;
+    }
+  </style>
+
+  <body>
+    
+    <div class="project">
+
+      <div class="form">
+      
+          <input type="text" placeholder="please enter your full name" id="name" required>
+    
+        <input type="text" placeholder="your school" id="school" required >
+    
+        <input type="text" placeholder="your Dept" id="dept" required>
+    
+        <input type="text" placeholder="your matric number" id="matric" required>
+    
+        <input type="text" placeholder=" level" id="level" required>
+    
+    
+        <input type="submit" value="add" class="submit" onclick="adfunction()"/>
+      </div>
+      <div class="table">
+        <table border="1" style="display: none" id="opened">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>sch</th>
+              <th>Dept</th>
+              <th>matric</th>
+              <th>lev</th>
+              <th>del</th>
+            </tr>
+          </thead>
+          <tbody id="displayed"></tbody>
+        </table>
+      </div>
+    </div>
+    <script>
+
+      let mainID = 0;
+      function adfunction(e) {
+        console.log(e);
+        mainID++;
+        document.getElementById("opened").style.display = "inline-block";
+        //   data = document.getElementById('displayed');
+        let all = "";
+        var name1 = document.getElementById("name").value;
+        var school = document.getElementById("school").value;
+        var Dept = document.getElementById("dept").value;
+        var matric = document.getElementById("matric").value;
+        var level = document.getElementById("level").value;
+        if( name1 ===""){
+          return
+        }
+        if( school ===""){
+          return
+        }
+        if( Dept ===""){
+          return
+        }
+        if( matric ===""){
+          return
+        }
+        if( level ===""){
+          return
+        }
+        all += `<tr id=${mainID}><td>${name1}</td><td>${school}</td><td>${Dept}</td><td>${matric}</td><td>${level}</td><td>
+    <button  class="but" onclick="remove2(${mainID})" style="padding: 0.5rem 2rem;background:transparent;">del</button></td></tr>`;
+
+        displayed.innerHTML += all;
+        
+      document.getElementById("name").value="";
+      document.getElementById("school").value="";
+      document.getElementById("dept").value="";
+      document.getElementById("matric").value="";
+      document.getElementById("level").value="";
+      }
+      function remove2(id) {
+        document.getElementById(id).remove();
+      }
+    </script>
+  </body>
+</html>
